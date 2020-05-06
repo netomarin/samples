@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Marcador de Truco</string>
+    <string name="dupla_1">Dupla 1</string>
+    <string name="um_tento">1 Tento</string>
+    <string name="truco">Truco</string>
+    <string name="seis">SEEEIS</string>
+    <string name="nove">NOVE!</string>
+    <string name="doze">DOZE!</string>
+    <string name="sem_placar">00</string>
+    <string name="dupla_2">Dupla 2</string>
+    <string name="label_agora">Agora!</string>
+    <string name="label_correram">Correram</string>
+    <string name="label_pergunta_outra_partida">Jogar outra?</string>
+    <string name="toast_info_nova_partida">Clique no botão com as cartas para começar uma nova partida</string>
+    <string name="toast_info_comecou_nova_partida">Bora jogar outra!</string>
+</resources>
