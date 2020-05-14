@@ -6,81 +6,22 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import dev.netomarin.marcadordetruco.databinding.ActivityMainBinding
 import dev.netomarin.marcadordetruco.model.DuplaDAO
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var dupla1: DuplaDAO
-    private lateinit var dupla2: DuplaDAO
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-        this.binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        this.binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // Criando duplas diretamente para ganhar tempo
-        dupla1 = DuplaDAO("Dupla 1")
-        dupla2 = DuplaDAO("Dupla 2")
-
-        // Exibindo nome e placar
-        binding.nomeDupla1.text = dupla1.nome
-        binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        binding.nomeDupla2.text = dupla2.nome
-        binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
-
-        // Definindo listeners
-        binding.tentoDupla1Button.setOnClickListener {
-            somaPontos(it as Button, dupla1)
-            binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        }
-
-        binding.trucoDupla1Button.setOnClickListener {
-            somaPontos(it as Button, dupla1)
-            binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        }
-
-        binding.seisDupla1Button.setOnClickListener {
-            somaPontos(it as Button, dupla1)
-            binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        }
-
-        binding.noveDupla1Button.setOnClickListener {
-            somaPontos(it as Button, dupla1)
-            binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        }
-
-        binding.dozeDupla1Button.setOnClickListener {
-            somaPontos(it as Button, dupla1)
-            binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        }
-
-        binding.tentoDupla2Button.setOnClickListener {
-            somaPontos(it as Button, dupla2)
-            binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
-        }
-
-        binding.trucoDupla2Button.setOnClickListener {
-            somaPontos(it as Button, dupla2)
-            binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
-        }
-
-        binding.seisDupla2Button.setOnClickListener {
-            somaPontos(it as Button, dupla2)
-            binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
-        }
-
-        binding.noveDupla2Button.setOnClickListener {
-            somaPontos(it as Button, dupla2)
-            binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
-        }
-
-        binding.dozeDupla2Button.setOnClickListener {
-            somaPontos(it as Button, dupla2)
-            binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
-        }
+        this.binding.dupla1 = DuplaDAO("Dupla 1")
+        this.binding.dupla2 = DuplaDAO("Dupla 2")
+        this.binding.activity = this
 
         binding.restartGameActionButton.setOnClickListener { confirmaReinicioJogo() }
     }
@@ -100,10 +41,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun reiniciaJogo() {
-        dupla1.pontuacao = 0
-        binding.placarDupla1TextView.text = dupla1.pontuacao.toString()
-        dupla2.pontuacao = 0
-        binding.placarDupla2TextView.text = dupla2.pontuacao.toString()
+        binding.dupla1!!.pontuacao = 0
+        binding.dupla2!!.pontuacao = 0
     }
 
     fun somaPontos(view: View, dupla: DuplaDAO) {

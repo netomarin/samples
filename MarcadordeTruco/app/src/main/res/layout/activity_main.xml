@@ -1,187 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="dupla1"
+            type="dev.netomarin.marcadordetruco.model.DuplaDAO" />
+
+        <variable
+            name="dupla2"
+            type="dev.netomarin.marcadordetruco.model.DuplaDAO" />
+
+        <variable
+            name="activity"
+            type="dev.netomarin.marcadordetruco.MainActivity" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/constraintLayout2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/nomeDupla1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/dupla_1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@id/constraintLayout2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/placarDupla1TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/sem_placar"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeDupla1" />
+            <TextView
+                android:id="@+id/nomeDupla1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{dupla1.nome}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/tentoDupla1Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/um_tento"
-            app:layout_constraintEnd_toStartOf="@id/trucoDupla1Button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placarDupla1TextView" />
+            <TextView
+                android:id="@+id/placarDupla1TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{String.valueOf(dupla1.pontuacao)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nomeDupla1" />
 
-        <Button
-            android:id="@+id/trucoDupla1Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/truco"
-            app:layout_constraintEnd_toStartOf="@id/seisDupla1Button"
-            app:layout_constraintStart_toEndOf="@+id/tentoDupla1Button"
-            app:layout_constraintTop_toBottomOf="@+id/placarDupla1TextView" />
+            <Button
+                android:id="@+id/tentoDupla1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/um_tento"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla1)}"
+                app:layout_constraintEnd_toStartOf="@id/trucoDupla1Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/placarDupla1TextView" />
 
-        <Button
-            android:id="@+id/seisDupla1Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/seis"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/trucoDupla1Button"
-            app:layout_constraintTop_toBottomOf="@id/placarDupla1TextView" />
+            <Button
+                android:id="@+id/trucoDupla1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/truco"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla1)}"
+                app:layout_constraintEnd_toStartOf="@id/seisDupla1Button"
+                app:layout_constraintStart_toEndOf="@+id/tentoDupla1Button"
+                app:layout_constraintTop_toBottomOf="@+id/placarDupla1TextView" />
 
-        <Button
-            android:id="@+id/noveDupla1Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/nove"
-            app:layout_constraintEnd_toStartOf="@id/dozeDupla1Button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tentoDupla1Button" />
+            <Button
+                android:id="@+id/seisDupla1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/seis"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla1)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trucoDupla1Button"
+                app:layout_constraintTop_toBottomOf="@id/placarDupla1TextView" />
 
-        <Button
-            android:id="@+id/dozeDupla1Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/doze"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/noveDupla1Button"
-            app:layout_constraintTop_toBottomOf="@id/tentoDupla1Button" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/noveDupla1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/nove"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla1)}"
+                app:layout_constraintEnd_toStartOf="@id/dozeDupla1Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tentoDupla1Button" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+            <Button
+                android:id="@+id/dozeDupla1Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/doze"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla1)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/noveDupla1Button"
+                app:layout_constraintTop_toBottomOf="@id/tentoDupla1Button" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/nomeDupla2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dupla_2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/placarDupla2TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/sem_placar"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nomeDupla2" />
-
-        <Button
-            android:id="@+id/tentoDupla2Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/um_tento"
-            app:layout_constraintEnd_toStartOf="@id/trucoDupla2Button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/placarDupla2TextView" />
-
-        <Button
-            android:id="@+id/trucoDupla2Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/truco"
-            app:layout_constraintEnd_toStartOf="@id/seisDupla2Button"
-            app:layout_constraintStart_toEndOf="@+id/tentoDupla2Button"
-            app:layout_constraintTop_toBottomOf="@+id/placarDupla2TextView" />
-
-        <Button
-            android:id="@+id/seisDupla2Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/seis"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/trucoDupla2Button"
-            app:layout_constraintTop_toBottomOf="@id/placarDupla2TextView" />
-
-        <Button
-            android:id="@+id/noveDupla2Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/nove"
-            app:layout_constraintEnd_toStartOf="@id/dozeDupla2Button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tentoDupla2Button" />
-
-        <Button
-            android:id="@+id/dozeDupla2Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/doze"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/noveDupla2Button"
-            app:layout_constraintTop_toBottomOf="@id/tentoDupla2Button" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/restartGameActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            app:backgroundTint="#8BC34A"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_restart_game" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout">
+
+            <TextView
+                android:id="@+id/nomeDupla2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{dupla2.nome}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/placarDupla2TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@{String.valueOf(dupla2.pontuacao)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nomeDupla2" />
+
+            <Button
+                android:id="@+id/tentoDupla2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/um_tento"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla2)}"
+                app:layout_constraintEnd_toStartOf="@id/trucoDupla2Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/placarDupla2TextView" />
+
+            <Button
+                android:id="@+id/trucoDupla2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/truco"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla2)}"
+                app:layout_constraintEnd_toStartOf="@id/seisDupla2Button"
+                app:layout_constraintStart_toEndOf="@+id/tentoDupla2Button"
+                app:layout_constraintTop_toBottomOf="@+id/placarDupla2TextView" />
+
+            <Button
+                android:id="@+id/seisDupla2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/seis"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla2)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trucoDupla2Button"
+                app:layout_constraintTop_toBottomOf="@id/placarDupla2TextView" />
+
+            <Button
+                android:id="@+id/noveDupla2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/nove"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla2)}"
+                app:layout_constraintEnd_toStartOf="@id/dozeDupla2Button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tentoDupla2Button" />
+
+            <Button
+                android:id="@+id/dozeDupla2Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/doze"
+                android:onClick="@{(view) -> activity.somaPontos(view, dupla2)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/noveDupla2Button"
+                app:layout_constraintTop_toBottomOf="@id/tentoDupla2Button" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/restartGameActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                app:backgroundTint="#8BC34A"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_restart_game" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
